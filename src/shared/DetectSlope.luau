@@ -11,8 +11,8 @@ return function(targetPart: Part, filterInstances: {any}?, scanHeight: number?, 
     local rayParams = RaycastParams.new() :: RaycastParams
     rayParams.FilterDescendantsInstances = {targetPart}
     
-    local rayMid = workspace:Raycast(mid, Vector3.new(0,-scanHeight,0), rayParams) :: RaycastResult
-    local rayFront = workspace:Raycast(front, Vector3.new(0,-scanHeight,0), rayParams) :: RaycastResult
+    local rayMid = workspace:Raycast(mid, Vector3.new(0,-scanHeight,0), rayParams) :: RaycastResult?
+    local rayFront = workspace:Raycast(front, Vector3.new(0,-scanHeight,0), rayParams) :: RaycastResult?
 
     if not rayMid or not rayFront then
         warn("No slope detected")
