@@ -21,7 +21,7 @@ debugTextLabel.TextColor3 = Color3.fromRGB(255,255,255)
 Instance.new("UIStroke", debugTextLabel)
 
 while true do
-    task.wait(0.05)
+    task.wait(0.01)
     if Player.Character == nil then continue end
 
     local humRootPart = Player.Character:FindFirstChild("HumanoidRootPart")

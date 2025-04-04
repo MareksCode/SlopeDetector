@@ -7,7 +7,7 @@ local DEBUG_MODE = true :: boolean
 
 return function(targetPart: Part, filterInstances: {Instance}?, scanHeight: number?, scanWidth: number?) : SlopeResult
     if not filterInstances then filterInstances = {targetPart} end
-    if scanHeight == nil or typeof(scanHeight) ~= "number" then scanHeight = 12 end
+    if scanHeight == nil or typeof(scanHeight) ~= "number" then scanHeight = 8 end
     if scanWidth == nil or typeof(scanWidth) ~= "number" then scanWidth = 1 end
 
     local lookVector = targetPart.CFrame.LookVector :: Vector3
@@ -78,7 +78,6 @@ return function(targetPart: Part, filterInstances: {Instance}?, scanHeight: numb
     end
 
     if rayToFront then --Object in front of the character; ignore rayFront result
-        print("object in front")
         rayFront = rayToFront
     end
 
