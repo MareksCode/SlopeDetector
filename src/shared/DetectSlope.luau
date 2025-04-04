@@ -1,5 +1,10 @@
 --!strict
-return function(targetPart: Part, filterInstances: {any}?, scanHeight: number?, scanWidth: number?) : number
+type SlopeResult = {
+    slopeDetected: boolean,
+    slopeHeight: number
+}
+
+return function(targetPart: Part, filterInstances: {any}?, scanHeight: number?, scanWidth: number?) : SlopeResult
     if not filterInstances then filterInstances = {targetPart} end
     if scanHeight == nil or typeof(scanHeight) ~= "number" then scanHeight = 10 end
     if scanWidth == nil or typeof(scanWidth) ~= "number" then scanWidth = 1 end
@@ -15,9 +20,14 @@ return function(targetPart: Part, filterInstances: {any}?, scanHeight: number?, 
     local rayFront = workspace:Raycast(front, Vector3.new(0,-scanHeight,0), rayParams) :: RaycastResult?
 
     if not rayMid or not rayFront then
-        warn("No slope detected")
-        return 0
+        return {
+            slopeDetected = false, 
+            slopeHeight = 0
+        }
     end
 
-    return rayFront.Position.Y - rayMid.Position.Y
+    return {
+        slopeDetected = true, 
+        slopeHeight = rayFront.Position.Y - rayMid.Position.Y
+    }
 end
